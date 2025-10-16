@@ -1,0 +1,29 @@
+# app configs
+main_color = "#785EF0" # purple
+secondary_color = "#DC267F" # magenta
+
+# list of ports to redirect
+[https]
+ports = [
+    443, # default https
+    8443, # alt https
+    8006, # proxmox ve
+    8007, # proxmox bs
+    3211, # copyparty
+]
+
+[http]
+ports = [
+    80, # default http
+    8080, # alt http
+    8081, # alt http
+    3000, # node js
+    5000, # flask
+    2283, # immich
+    8096, # jellyfin
+]
+
+# additional ports not shown by nmap
+[ports]
+"pve.neko-algieba.ts.net" = [8006]
+"main.neko-algieba.ts.net" = [2283, 8096]
