@@ -19,5 +19,24 @@ pip install -r requirements.txt
 python main.py [PORT]
 ```
 
+## Setup (NixOS)
+
+1. Move/copy `.nix` files in `./nix` to `/etc/nixos/`. Please make sure to change the variable name, `path_to_folder` in `./nix/tailscale-hub.nix`. This variable should be set to the folder where this `README.md` exists.
+
+2. Add these files as imports to your configuration file, `/etc/nixos/configuration.nix`.
+
+3. Change permissions if needed:
+
+```
+sudo chmod +x /home/{user}
+sudo chmod +x /home/{user}/git
+```
+
+4. App should run on port `80/8080` with `nginx` after running:
+
+```
+sudo nixos-rebuild switch
+```
+
 ## Configurations
 Configurations are stored in the `config.toml` file, and all the variables should be self explanatory along with the comments provided.

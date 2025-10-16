@@ -192,6 +192,21 @@ class MainTab(ui.element):
                 "peer_data": peer_data
             })
 
+        # dont forget about self
+        self_data = d.get("Self", {})
+        hostname = self_data.get("HostName", "Unknown")
+        dns_name = self_data.get("DNSName", "")[:-1]
+        online = self_data.get("Online", False)
+        ip = self_data.get("TailscaleIPs", [""])[0]
+
+        peers_data.append({
+            "hostname": hostname,
+            "dns_name": dns_name,
+            "online": online,
+            "ip": ip,
+            "peer_data": self_data
+        })
+
         # sort by whether peer is "online", then ip
         peers_data.sort(key = lambda x: (not x["online"], x["ip"]))
 
