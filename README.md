@@ -11,7 +11,10 @@ This project uses NiceGUI and requires Python >= 3.10.
 python3 -m venv .venv
 pip install -r requirements.txt
 ```
-2. Start the app (optionally append a custom port):
+
+2. Install `nmap` through your package distributor (`yay -S nmap` for arch)
+
+3. Start the app (optionally append a custom port):
 ```
 python main.py [PORT]
 ```
