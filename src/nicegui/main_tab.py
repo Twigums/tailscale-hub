@@ -2,7 +2,7 @@ import subprocess
 import json
 import asyncio
 
-from nicegui import ui
+from nicegui import app, ui
 from typing import Optional, List, Tuple
 
 from src.dataclasses import AppConfig
@@ -27,6 +27,12 @@ class MainTab(ui.element):
         # init last dictionary of ip: ports
         # idea is if its the same, don't clear and spend precious cpu making new cards
         self.last_memory = {}
+
+        self.cached_peers_data = app.storage.user.get("cached_peers_data", None)
+        if self.cached_peers_data:
+            self._refresh_grid(self.cached_peers_data)
+
+        ui.timer(0.1, self.load_stats, once = True)
 
     # helper to return a list of ports
     def _strip_port_stdout(self, stdout: str) -> List[int]:
@@ -235,5 +241,7 @@ class MainTab(ui.element):
         if new_memory != self.last_memory:
             self._refresh_grid(peers_data)
             self.last_memory = new_memory
+
+            app.storage.user["cached_peers_data"] = peers_data
 
         return None

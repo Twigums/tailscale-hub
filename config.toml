@@ -21,6 +21,7 @@ ports = [
     5000, # flask
     2283, # immich
     8096, # jellyfin
+    8888, # jupyter
 ]
 
 # additional ports not shown by nmap
